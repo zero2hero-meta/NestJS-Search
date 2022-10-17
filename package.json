@@ -1,6 +1,6 @@
 {
   "name": "nestjs-search",
-  "version": "3.0.4",
+  "version": "4.0.0",
   "description": "a simple pagination library made for nestjs(mongoose and aws documentdb) by zero2hero",
   "main": "dist",
   "types": "dist",
@@ -15,7 +15,8 @@
     "lint": "eslint \"src/**/*.ts\"",
     "prepublish": "npm run build",
     "fmt": "prettier --config .prettierrc \"**/*.{ts,mjs}\" --write",
-    "release": "release-it"
+    "release": "release-it",
+    "test" : "make test"
   },
   "keywords": [
     "nestjs",
