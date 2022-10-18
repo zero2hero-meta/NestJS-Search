@@ -123,6 +123,50 @@ Example:-
 }
 ```
 
+Please note: for the same same field, when you use "lt" and "gt" filters at the same time, the filters overriding each other, instead please use "between" as follows.
+
+Example: between
+
+```json
+{
+    "filter": [
+        {
+            "name": "eventStartDateTime",
+            "arr_value": ["2021-11-16", "2021-11-17"],
+            "operator": "between"
+        }
+    ]
+}
+```
+
+or any other ISODate
+
+```json
+{
+    "filter": [
+        {
+            "name": "eventStartDateTime",
+            "arr_value": ["2021-11-16T11:30:01.001+00:00", "2021-11-17T11:30:01.001+00:00"],
+            "operator": "between"
+        }
+    ]
+}
+```
+
+Example: in
+
+```json
+{
+    "filter": [
+        {
+            "name": "eventCategory",
+            "arr_value": ["sport", "training"],
+            "operator": "in"
+        }
+    ]
+}
+```
+
 -   As response, you will also get "next_key".
 
 Example:
