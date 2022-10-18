@@ -46,7 +46,8 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "mongoose": "^6.1.0"
+    "mongoose": "^6.1.0",
+    "reflect-metadata": "^0.1.13"
   },
   "peerDependencies": {
     "class-transformer": "^0.5.1",
