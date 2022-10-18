@@ -10,7 +10,7 @@ export const generatePaginationFilter = (filter: filterDto[]) => {
     for (const filterElement of filter) {
         if (filterElement instanceof filterDto) {
             // console.log('instanceof filterDto')
-            // console.log('filterElement: ', filterElement)
+            console.log('filterElement: ', filterElement)
             if (filterElement.operator === 'regex') {
                 let exp = new RegExp(filterElement.value, 'i')
                 if (filterElement.mode === 'swm') {
@@ -32,8 +32,9 @@ export const generatePaginationFilter = (filter: filterDto[]) => {
                 }
             } else if (filterElement.operator === 'between') {
                 filter_fn[generateMongoFilterKeyName(filterElement.name)] = {
-                    ['$' + filterElement.operator]: { ['$gte']: filterElement.arr_value[0], ['$lte']: filterElement.arr_value[1] }
+                    ['$gte']: filterElement.arr_value[0], ['$lte']: filterElement.arr_value[1]
                 }
+                console.log('filter_fn:', filter_fn)
             } else
                 filter_fn[generateMongoFilterKeyName(filterElement.name)] = {
                     ['$' + filterElement.operator]: filterElement.value
