@@ -1,6 +1,6 @@
 {
   "name": "nestjs-search",
-  "version": "4.0.6",
+  "version": "4.0.7",
   "description": "a simple pagination library made for nestjs(mongoose and aws documentdb) by zero2hero",
   "main": "dist",
   "types": "dist",
