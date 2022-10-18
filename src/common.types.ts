@@ -52,7 +52,7 @@ export enum REGEX_SEARCH_MODE_TYPE {
     ewm = 'ewm'
 }
 
-export type TYPE_STRING_NUM_ARRAY = (string | number)[]
+export type TYPE_STRING_NUM_ARRAY = (string | number | Date)[]
 
 export const REGEX_MONGO_FIELD_NAME = /^[a-zA-Z_]+$/
 
