@@ -1,6 +1,6 @@
 <div align=center>
 
-# NestJS-Search
+# NestJS Search
 
 Search package for NestJS with MongoDb and AWS DocumentDB
 
@@ -10,10 +10,10 @@ PS, It is a copy of Nestjs-Keyset-Paginator, was added new features(i.e. between
 
 ## Installation
 
-Use the package manager [npm](npmjs.com/package/nestjs-keyset-paginator) to install Nestjs-Keyset-Paginator.
+Use the package manager [npm](npmjs.com/package/nestjs-search) to install NestJS Search.
 
 ```bash
-npm i nestjs-keyset-paginator
+npm i nestjs-search
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ npm i nestjs-keyset-paginator
 -   In example.controller.ts use PaginationDto to Validate params and pass it to service.
 
 ```typescript
-import { PaginationDto, projectionDto } from 'nestjs-keyset-paginator'
+import { PaginationDto, projectionDto } from 'nestjs-search'
 
 @Controller('example')
 export class ExampleController {
@@ -45,7 +45,7 @@ export class ExampleController {
 -   Then in example.service.ts pass those params to "paginate()" along with you model (Mongoose Model).
 
 ```typescript
-import paginate, { filterDto, projectionDto } from 'nestjs-keyset-paginator'
+import paginate, { filterDto, projectionDto } from 'nestjs-search'
 
 @Injectable()
 export class ExampleService {
