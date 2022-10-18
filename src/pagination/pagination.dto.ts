@@ -45,7 +45,7 @@ export class filterDto {
     @IsValidMongoFilterValue()
     value
 
-    @ValidateIf((object) => object.operator === (ENUM_FILTER_OPERATOR_TYPE._in || ENUM_FILTER_OPERATOR_TYPE._nin))
+    @ValidateIf((object) => object.operator === (ENUM_FILTER_OPERATOR_TYPE._in || ENUM_FILTER_OPERATOR_TYPE._nin || ENUM_FILTER_OPERATOR_TYPE.between))
     @IsMongoArrValue(100)
     arr_value: TYPE_STRING_NUM_ARRAY
 
