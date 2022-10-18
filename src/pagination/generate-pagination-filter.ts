@@ -32,7 +32,7 @@ export const generatePaginationFilter = (filter: filterDto[]) => {
                 }
             } else if (filterElement.operator === 'between') {
                 filter_fn[generateMongoFilterKeyName(filterElement.name)] = {
-                    ['$' + filterElement.operator]: { $gte: filterElement.arr_value[0], $lte: filterElement.arr_value[1] }
+                    ['$' + filterElement.operator]: { ['$gte']: filterElement.arr_value[0], ['$lte']: filterElement.arr_value[1] }
                 }
             } else
                 filter_fn[generateMongoFilterKeyName(filterElement.name)] = {
