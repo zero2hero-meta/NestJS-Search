@@ -20,4 +20,22 @@ describe('pagination filter tests', () => {
             'schedule.eventStartDateTime': { '$gte': '2032-12-15', '$lte': '2032-12-15' }
         });
     });
+
+    test('search test', () => {
+        const filter: filterDto[] = [
+            {
+                "name": "text",
+                "value": "zero2hero metaverse events",
+                "operator": ENUM_FILTER_OPERATOR_TYPE.search,
+                arr_value: null,
+                mode: null
+            }
+        ]
+
+        const fr = generatePaginationFilter(filter)
+        expect(fr).toEqual({
+            '$text': { '$search': 'zero2hero metaverse events' }
+        });
+    });
+
 });

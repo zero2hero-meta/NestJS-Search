@@ -153,6 +153,22 @@ or any other ISODate
 }
 ```
 
+Example: fulltext search
+
+```json
+{
+    "filter": [
+        {
+            "name": "text",
+            "value": "zero2hero metaverse event",
+            "operator": "search"
+        }
+    ]
+}
+```
+
+it works regarding to MongoDb Text Indexes, the document link: https://www.mongodb.com/docs/manual/core/index-text/
+
 Example: in
 
 ```json

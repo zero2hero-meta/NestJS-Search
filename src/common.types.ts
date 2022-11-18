@@ -34,7 +34,12 @@ export enum ENUM_FILTER_OPERATOR_TYPE {
     /**
      * Array based search with "$gt and $lt" mongo operator
      */
-    between = 'between'
+    between = 'between',
+    /**
+     * fulltext search
+     */
+    search = 'search'
+
 }
 
 export enum REGEX_SEARCH_MODE_TYPE {

@@ -34,6 +34,10 @@ export const generatePaginationFilter = (filter: filterDto[]) => {
             filter_fn[generateMongoFilterKeyName(filterElement.name)] = {
                 ['$gte']: filterElement.arr_value[0], ['$lte']: filterElement.arr_value[1]
             }
+        } else if (filterElement.operator === 'search') {
+            filter_fn['$' + generateMongoFilterKeyName(filterElement.name)] = {
+                ['$' + filterElement.operator]: filterElement.value
+            }
         } else
             filter_fn[generateMongoFilterKeyName(filterElement.name)] = {
                 ['$' + filterElement.operator]: filterElement.value
