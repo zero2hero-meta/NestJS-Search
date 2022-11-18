@@ -38,4 +38,33 @@ describe('pagination filter tests', () => {
         });
     });
 
+    test('like regex on multible fields test', () => {
+        const filter: filterDto[] = [
+            {
+                "name": "groupName",
+                "value": "test.*test.*details.*details",
+                "operator": ENUM_FILTER_OPERATOR_TYPE.like,
+                arr_value: null,
+                "mode": "bnm"
+            },
+            {
+                "name": "groupDetails.groupDetails",
+                "value": "test.*test.*details.*details",
+                "operator": ENUM_FILTER_OPERATOR_TYPE.like,
+                arr_value: null,
+                "mode": "bnm"
+            }
+        ]
+
+        const fr = generatePaginationFilter(filter)
+        expect(fr).toEqual({
+            '$or': [{
+                "groupName": /.*test.*test.*details.*details.*/i,
+            },
+            {
+                "groupDetails.groupDetails": /.*test.*test.*details.*details.*/i,
+            }],
+        });
+    });
+
 });

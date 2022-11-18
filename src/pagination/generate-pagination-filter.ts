@@ -7,11 +7,12 @@ import { generateMongoFilterKeyName } from '../common/generate-mongo-filter-key-
 
 export const generatePaginationFilter = (filter: filterDto[]) => {
     const filter_fn = {}
+    const like = [];
     for (const filterElement of filter) {
         // if (filterElement instanceof filterDto) {
         // console.log('instanceof filterDto')
         // console.log('filterElement: ', filterElement)
-        if (filterElement.operator === 'regex') {
+        if (filterElement.operator === 'regex' || filterElement.operator === 'like') {
             let exp = new RegExp(filterElement.value, 'i')
             if (filterElement.mode === 'swm') {
                 exp = new RegExp('^' + filterElement.value + '.*', 'i')
@@ -23,8 +24,12 @@ export const generatePaginationFilter = (filter: filterDto[]) => {
                 // console.log('EWM\n');
                 exp = new RegExp(filterElement.value + '.*', 'i')
             }
-            filter_fn[generateMongoFilterKeyName(filterElement.name)] = {
-                ['$' + filterElement.operator]: exp
+            if (filterElement.operator === 'like') {
+                like.push({ [generateMongoFilterKeyName(filterElement.name)]: exp })
+            } else {
+                filter_fn[generateMongoFilterKeyName(filterElement.name)] = {
+                    ['$' + filterElement.operator]: exp
+                }
             }
         } else if (filterElement.operator === 'in' || filterElement.operator === 'nin') {
             filter_fn[generateMongoFilterKeyName(filterElement.name)] = {
@@ -38,6 +43,7 @@ export const generatePaginationFilter = (filter: filterDto[]) => {
             filter_fn['$' + generateMongoFilterKeyName(filterElement.name)] = {
                 ['$' + filterElement.operator]: filterElement.value
             }
+
         } else
             filter_fn[generateMongoFilterKeyName(filterElement.name)] = {
                 ['$' + filterElement.operator]: filterElement.value
@@ -46,6 +52,10 @@ export const generatePaginationFilter = (filter: filterDto[]) => {
         //     console.warn('filterElement must be instance of filterDto')
         //     console.warn('filterElement:\n', filterElement)
         // }
+    }
+
+    if (Array.isArray(like) && like.length > 0) {
+        filter_fn['$or'] = like
     }
 
     return filter_fn

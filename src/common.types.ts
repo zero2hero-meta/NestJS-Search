@@ -38,7 +38,11 @@ export enum ENUM_FILTER_OPERATOR_TYPE {
     /**
      * fulltext search
      */
-    search = 'search'
+    search = 'search',
+    /**
+     * fulltext search
+     */
+    like = 'like'
 
 }
 
