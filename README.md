@@ -154,6 +154,7 @@ or any other ISODate
 ```
 
 Example: fulltext search
+Please note: Aws DocumentDB doesn't support fulltext search now(suggests Elastic Search instead). Therefore, you cannot use this search on DocDB. Instead, you can use like search option like we shown on the next example.
 
 ```json
 {
@@ -162,6 +163,30 @@ Example: fulltext search
             "name": "text",
             "value": "zero2hero metaverse event",
             "operator": "search"
+        }
+    ]
+}
+```
+
+it works regarding to MongoDb Text Indexes, the document link: https://www.mongodb.com/docs/manual/core/index-text/
+
+Example: Like search on multiple fields
+Please note: Aws DocumentDB doesn't support fulltext search now(suggests Elastic Search instead). Therefore, we added enhanced like search on multiple field. Just keep in your mind, more data will consume more CPU and memory on here. You may think to move to MongoDB to save some cost instead.
+
+```json
+{
+    "filter": [
+        {
+            "name": "groupName",
+            "value": "Test",
+            "operator": "like",
+            "mode": "bnm"
+        },
+        {
+            "name": "groupDetails.groupDetails",
+            "value": "test",
+            "operator": "like",
+            "mode": "bnm"
         }
     ]
 }
